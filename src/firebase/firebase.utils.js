@@ -1,7 +1,11 @@
+// import main firebase library
 import firebase from 'firebase/app';
+// import firestore API
 import 'firebase/firestore';
+// import OAuth API
 import 'firebase/auth';
 
+// configuration object obtained from firebase console
 const config = {
     apiKey: "AIzaSyApTB-Yg4lAZXPIcnCZlc0o7J1vAAZbW1k",
     authDomain: "crwn-db-8a8c3.firebaseapp.com",
@@ -12,17 +16,26 @@ const config = {
     measurementId: "G-EN3G0H83TM"
 };
 
+// export an asynchronous function which creates a firestore user object
+// if one does not exist and returns a reference to a firestore user object
+// based on the userAuth object returns by the OAuth api
 export const createUserProfileDocument = async (userAuth, otherData) => {
-    if (!userAuth) {return;}
+    if (!userAuth) {return;} // if no valid userAuth, abort
 
+     // get a firestore reference using userAuth.uid
     const userRef = firestore.doc(`users/${userAuth.uid}`);
 
-    const snapShot = await userRef.get();
+    // request snapshot for current reference
+    const snapShot = await userRef.get(); 
 
-    if(!snapShot.exists) {
+    // if no snapshot exists, create one using userAuth
+    if(!snapShot.exists) { 
+        // grab displayName and email from userAuth
         const { displayName, email } = userAuth;
+        // create new timestamp
         const createdAt = new Date();
 
+        // attempt to create the snapshot
         try {
             await userRef.set({
                 displayName,
@@ -35,16 +48,21 @@ export const createUserProfileDocument = async (userAuth, otherData) => {
         }
     }
 
+    // return the firestore reference based on userAuth.uid
+    // which should now have a snapshot associated with it
     return userRef;
 };
 
-firebase.initializeApp(config);
+firebase.initializeApp(config); // initialize app with firebase configuration settings
 
-export const auth = firebase.auth();
-export const firestore = firebase.firestore();
+export const auth = firebase.auth(); // export OAuth API
+export const firestore = firebase.firestore(); // export firestore API
 
+// create a Good signin provider
 const provider = new firebase.auth.GoogleAuthProvider();
+// select prompt parameter on provider
 provider.setCustomParameters({ prompt: 'select_account' });
+// export function which triggers Google signin popup
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
 export default firebase;

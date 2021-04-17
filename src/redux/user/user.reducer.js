@@ -1,7 +1,9 @@
+// initialize state of currentUser
 const INITIAL_STATE = {
     currentUser: null
 };
 
+// reducer which responds to actions which set the currentUser in the store
 const userReducer = (state=INITIAL_STATE, action) => {
     switch (action.type) {
         case 'SET_CURRENT_USER':
