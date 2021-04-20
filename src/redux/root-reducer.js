@@ -1,6 +1,8 @@
 // import individual reducers
 import userReducer from './user/user.reducer';
 import cartReducer from './cart/cart.reducer';
+import directoryReducer from './directory/directory.reducer';
+import shopReducer from './shop/shop.reducer';
 // import combineReducers function
 import { combineReducers } from 'redux';
 // import local store persistence tools
@@ -17,7 +19,9 @@ const persistConfig = {
 // create rootReducer object
 const rootReducer = combineReducers({
     user: userReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    directory: directoryReducer,
+    shop: shopReducer
 });
 
 // returns an object which contains references to all individual reducers
