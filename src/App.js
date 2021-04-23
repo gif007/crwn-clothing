@@ -5,6 +5,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
+import CheckoutPage from './pages/checkout/checkout.component';
 // import app header component
 import Header from './components/header/header.component';
 // import firebase utilities
@@ -15,9 +16,10 @@ import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/user/user.actions';
 // import main app styles
 import './App.css';
+// import redux selectors
 import { selectCurrentUser } from './redux/user/user.selectors';
+// import reselect wrapper
 import { createStructuredSelector } from 'reselect';
-import CheckoutPage from './pages/checkout/checkout.component';
 
 
 class App extends React.Component {
