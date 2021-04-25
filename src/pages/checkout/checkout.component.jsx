@@ -1,12 +1,28 @@
+// import react library
 import React from 'react';
+
+// import styles
 import './checkout.styles.scss';
+
+// import connect HoC from redux
 import { connect } from 'react-redux';
+
+// import createstructuredselector method of reselect
 import { createStructuredSelector } from 'reselect';
+
+// import selectors for cart items array and cart total
 import { selectCartItems } from '../../redux/cart/cart.selectors';
 import { selectCartTotal } from '../../redux/cart/cart.selectors';
+
+// import checkout item view component
 import CheckoutItem from '../../components/checkout-item/checkout-item.component';
+
+// import stripe checkout button
 import StripeCheckoutButton from '../../components/stripe-button/stripe-button.component';
 
+
+
+// return a checkout page which presents current items in cart array, overall total and the stripe checkout button
 const CheckoutPage = ({ cartItems, cartTotal }) => (
     <div className='checkout-page'>
         <div className='checkout-header'>
@@ -44,6 +60,8 @@ const CheckoutPage = ({ cartItems, cartTotal }) => (
     </div>
 );
 
+
+// get the cart items array and cart total and pass to checkout page
 const mapStateToProps = createStructuredSelector({
     cartItems: selectCartItems,
     cartTotal: selectCartTotal

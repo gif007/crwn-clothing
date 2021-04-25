@@ -1,5 +1,9 @@
+// import react library
 import React from 'react';
+
+// import styles
 import './sign-in-and-sign-up.styles.scss';
+
 // import SignIn and SignUp components
 import SignIn from '../../components/sign-in/sign-in.component';
 import SignUp from '../../components/sign-up/sign-up.component';
