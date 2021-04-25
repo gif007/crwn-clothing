@@ -6,6 +6,7 @@ import shopReducer from './shop/shop.reducer';
 
 // import combineReducers function to create root reducer
 import { combineReducers } from 'redux';
+
 // import local store persistence tools
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
