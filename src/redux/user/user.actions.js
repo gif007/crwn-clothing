@@ -1,3 +1,4 @@
+// get user action types
 import { UserActionTypes } from './user.types';
 
 // export a function which dispatches action to change currentUser in store

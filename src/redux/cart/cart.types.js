@@ -1,3 +1,4 @@
+// export object containing string values for cart action types
 export const CartActionTypes = {
     TOGGLE_CART_HIDDEN: 'TOGGLE_CART_HIDDEN',
     ADD_ITEM: 'ADD_ITEM',

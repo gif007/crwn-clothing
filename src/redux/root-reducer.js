@@ -3,7 +3,8 @@ import userReducer from './user/user.reducer';
 import cartReducer from './cart/cart.reducer';
 import directoryReducer from './directory/directory.reducer';
 import shopReducer from './shop/shop.reducer';
-// import combineReducers function
+
+// import combineReducers function to create root reducer
 import { combineReducers } from 'redux';
 // import local store persistence tools
 import { persistReducer } from 'redux-persist';

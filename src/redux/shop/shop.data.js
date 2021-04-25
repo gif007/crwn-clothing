@@ -1,3 +1,4 @@
+//default mock up shop data for online store containing images, names and prices for fake clothing store items
 const SHOP_DATA = {
   hats: {
     id: 1,

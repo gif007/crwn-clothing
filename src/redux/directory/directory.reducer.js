@@ -1,3 +1,4 @@
+// initiate state of directory reducer with category sections
 const INITIAL_STATE = {
     sections: [
         {
@@ -35,6 +36,8 @@ const INITIAL_STATE = {
     ]
 };
 
+
+// export function which always returns current unmodified state
 const directoryReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         default:

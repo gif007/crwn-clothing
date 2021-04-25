@@ -1,3 +1,4 @@
+// import user action types
 import { UserActionTypes } from './user.types';
 
 // initialize state of currentUser
