@@ -1,10 +1,23 @@
+// import react library
 import React from 'react';
+
+// import styles
 import './sign-in.styles.scss';
+
+// import form inputs with shrinkable labels
 import FormInput from '../form-input/form-input.component';
+
+// import custom button component
 import CustomButton from '../custom-button/custom-button.component';
+
+// import auth api and signInWithGoogle pop up
 import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
 
+
+// returns a sign in component 
 class SignIn extends React.Component {
+
+    // keeps values of form inputs in own state
     constructor(props) {
         super(props);
 
@@ -14,6 +27,7 @@ class SignIn extends React.Component {
         }
     }
 
+    // takes current form values and checks them against firebase auth api
     handleSubmit = async event => {
         event.preventDefault();
 
@@ -27,12 +41,14 @@ class SignIn extends React.Component {
         } 
     };
 
+    // update state with form input values
     handleChange = event => {
         const { value, name } = event.target;
 
         this.setState({ [name]: value })
     }
 
+    // returns the sign in form with google sign in button
     render() {
         return (
             <div className="sign-in">

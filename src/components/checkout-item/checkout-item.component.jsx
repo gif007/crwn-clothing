@@ -1,8 +1,17 @@
+// import react library
 import React from 'react';
+
+// import styles
 import './checkout-item.styles.scss';
+
+// import connect HoC from redux
 import { connect } from 'react-redux';
+
+// import cart actions to manipulate shop item quantity property
 import { clearItemFromCart, addItem, removeItem } from '../../redux/cart/cart.actions';
 
+
+// return a checkout item component with functions to increment and decrement quantity and remove item completely from cart
 const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
     const { name, imageUrl, price, quantity } = cartItem;
     return (
@@ -36,6 +45,8 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
     </div>
 )};
 
+
+// passes in dispatch actions to increment, decrement or remove cart items
 const mapDispatchToProps = dispatch => ({
     clearItem: item => dispatch(clearItemFromCart(item)),
     addItem: item => dispatch(addItem(item)),

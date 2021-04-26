@@ -1,10 +1,23 @@
+// import react library
 import React from 'react';
+
+// import form inputs with shrinkable labels
 import FormInput from '../form-input/form-input.component';
+
+// import custom button component
 import CustomButton from '../custom-button/custom-button.component';
+
+// import firebase auth api and createUserProfileDocument function to manage user profiles in firestore
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
+
+// import styles
 import './sign-up.styles.scss';
 
+
+// returns a sign up component
 class SignUp extends React.Component {
+
+    // holds form values in own state
     constructor() {
         super();
 
@@ -16,17 +29,22 @@ class SignUp extends React.Component {
         }
     }
 
+    // submits form values to firestore
     handleSubmit = async (event) => {
         event.preventDefault();
         const { displayName, email, confirmPassword, password } = this.state;
+
+        // check for password mismatch
         if (password!== confirmPassword) {
             alert('Passwords do not match');
             return;
         }
 
+        // attempt to create a firestore document representing user 
         try {
             const { user } = await auth.createUserWithEmailAndPassword(email, password);
             await createUserProfileDocument(user, {displayName});
+            // wipe form on successful profile creation
             this.setState({
                 displayName: '',
                 email: '',
@@ -38,12 +56,14 @@ class SignUp extends React.Component {
         }
     }
 
+    // update state to hold current form input values
     handleChange = (event) => {
         const {name, value} = event.target;
 
         this.setState({[name]:value});
     }
 
+    // returns the sign up form
     render() {
         const { displayName, email, confirmPassword, password } = this.state;
         return (
