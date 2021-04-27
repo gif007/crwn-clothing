@@ -11,6 +11,14 @@ export const AddToCartContainer = styled(CustomButton)`
     display: none;
 `;
 
+export const CollectionItemImageContainer = styled.div`
+    width: 100%;
+    height: 95%;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 5px;
+`;
+
 export const CollectionItemContainer = styled.div`
     width: 22vw;
     display: flex;
@@ -20,21 +28,15 @@ export const CollectionItemContainer = styled.div`
     position: relative;
 
     &:hover {
-        opacity: 0.8;
+        ${CollectionItemImageContainer} {
+            opacity: 0.8;
+        }
 
         ${AddToCartContainer} {
             opacity: 0.85;
             display: flex;
         }
     }
-`;
-
-export const CollectionItemImageContainer = styled.div`
-    width: 100%;
-    height: 95%;
-    background-size: cover;
-    background-position: center;
-    margin-bottom: 5px;
 `;
 
 export const CollectionFooterContainer = styled.div`
