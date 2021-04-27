@@ -1,8 +1,8 @@
 // import react library
 import React from 'react';
 
-// import styles
-import './collections-overview.styles.scss';
+// import styled container
+import { CollectionOverviewContainer } from './collections-overview.styles';
 
 // import connect HoC from redux
 import { connect } from 'react-redux';
@@ -19,13 +19,13 @@ import { selectCollectionsForPreview } from '../../redux/shop/shop.selectors';
 
 // returns a collections overview component which displays a preview for each collection
 const CollectionsOverview = ({ collections }) => (
-    <div className='collections-overview'>
+    <CollectionOverviewContainer>
         {
             collections.map(({ id, ...otherCollectionsProps }) => (
                 <CollectionPreview key={id} {...otherCollectionsProps} />
             ))
         }
-    </div>
+    </CollectionOverviewContainer>
 )
 
 

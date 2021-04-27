@@ -1,8 +1,8 @@
 // import react library
 import React from 'react';
 
-// import styles
-import './sign-in.styles.scss';
+// import styled containers
+import { SignInContainer, TitleContainer, ButtonsContainer } from './sign-in.styles';
 
 // import form inputs with shrinkable labels
 import FormInput from '../form-input/form-input.component';
@@ -51,8 +51,8 @@ class SignIn extends React.Component {
     // returns the sign in form with google sign in button
     render() {
         return (
-            <div className="sign-in">
-                <h2 className='title'>I already have an account</h2>
+            <SignInContainer>
+                <TitleContainer>I already have an account</TitleContainer>
                 <span>Sign in with your email and password</span>
 
                 <form onSubmit={this.handleSubmit}>
@@ -73,7 +73,7 @@ class SignIn extends React.Component {
                         handleChange={this.handleChange}
                         required
                     />
-                    <div className='buttons'>
+                    <ButtonsContainer>
                         <CustomButton type='submit'>Sign in</CustomButton>
                         <CustomButton
                             onClick={signInWithGoogle}
@@ -82,10 +82,10 @@ class SignIn extends React.Component {
                         >
                             Sign in with google
                         </CustomButton>
-                    </div>
+                    </ButtonsContainer>
                     
                 </form>
-            </div>
+            </SignInContainer>
         )
     }
 }

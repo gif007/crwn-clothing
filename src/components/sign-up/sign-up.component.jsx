@@ -10,8 +10,8 @@ import CustomButton from '../custom-button/custom-button.component';
 // import firebase auth api and createUserProfileDocument function to manage user profiles in firestore
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 
-// import styles
-import './sign-up.styles.scss';
+// import styled containers
+import { SignUpContainer, TitleContainer } from './sign-up.styles';
 
 
 // returns a sign up component
@@ -67,8 +67,8 @@ class SignUp extends React.Component {
     render() {
         const { displayName, email, confirmPassword, password } = this.state;
         return (
-            <div className='sign-up'>
-                <h2 className='title'>I do not have an account</h2>
+            <SignUpContainer>
+                <TitleContainer>I do not have an account</TitleContainer>
                 <span>Sign up with your email and password</span>
 
                 <form onSubmit={this.handleSubmit} className='sign-up-form'>
@@ -106,7 +106,7 @@ class SignUp extends React.Component {
                     />
                     <CustomButton type='submit'>Sign Up</CustomButton>
                 </form>
-            </div>
+            </SignUpContainer>
         )
     }
 }

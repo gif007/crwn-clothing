@@ -1,11 +1,15 @@
 // import react library
 import React from 'react';
 
-//import styles
-import './collection-item.styles.scss';
-
-// import custom button component
-import CustomButton from '../custom-button/custom-button.component';
+// import styled containers
+import {
+    CollectionItemContainer,
+    CollectionItemImageContainer,
+    CollectionFooterContainer,
+    CollectionItemNameContainer,
+    CollectionItemPriceContainer,
+    AddToCartContainer
+} from './collection-item.styles';
 
 // import connect HoC from redux
 import { connect } from 'react-redux';
@@ -18,21 +22,20 @@ import { addItem } from '../../redux/cart/cart.actions';
 const CollectionItem = ({ item, addItem }) => {
     const {name, price, imageUrl} = item;
     return (
-    <div className='collection-item'>
-        <div
-            className='image'
+    <CollectionItemContainer>
+        <CollectionItemImageContainer
             style={{
                 backgroundImage: `url(${imageUrl})`
             }}
         />
-        <div className='collection-footer'>
-            <span className='name'>{ name }</span>
-            <span className='price'>${ price }</span>
-        </div>
-        <CustomButton onClick={() => addItem(item)} inverted>
+        <CollectionFooterContainer>
+            <CollectionItemNameContainer>{ name }</CollectionItemNameContainer>
+            <CollectionItemPriceContainer>${ price }</CollectionItemPriceContainer>
+        </CollectionFooterContainer>
+        <AddToCartContainer onClick={() => addItem(item)} inverted>
             Add to cart
-        </CustomButton>
-    </div>)
+        </AddToCartContainer>
+    </CollectionItemContainer>)
 };
 
 

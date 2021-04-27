@@ -4,8 +4,8 @@ import React from 'react';
 // import menu item component
 import MenuItem from '../menu-item/menu-item.component';
 
-// import styles
-import './directory.styles.scss';
+// import styled container
+import { DirectoryMenuContainer } from './directory.styles';
 
 // import connect HoC from redux
 import { connect } from 'react-redux';
@@ -19,13 +19,13 @@ import { selectDirectorySections } from '../../redux/directory/directory.selecto
 
 // returns a directory component for the homepage which displays sections links
 const directory = ({ sections }) => (
-  <div className="directory-menu">
+  <DirectoryMenuContainer>
     {
       sections.map(({ id, ...otherSectionProps }) => (
           <MenuItem key={id} {...otherSectionProps} />
       ))
     }
-  </div>
+  </DirectoryMenuContainer>
 )
 
 

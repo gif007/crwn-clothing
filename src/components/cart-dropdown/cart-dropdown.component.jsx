@@ -1,14 +1,11 @@
 // import react library
 import React from 'react';
 
-// import custom button component
-import CustomButton from '../custom-button/custom-button.component';
-
 // import cart item view component for drop down
 import CartItem from '../cart-item/cart-item.component';
 
-// import styles
-import './cart-dropdown.styles.scss';
+// import styled containers
+import { CartDropdownContainer, CartItemsContainer, EmptyMessageContainer, CheckoutButtonWrapper } from './cart-dropdown.styles';
 
 // import connect HoC from redux
 import { connect } from 'react-redux';
@@ -28,23 +25,23 @@ import { toggleCartHidden } from '../../redux/cart/cart.actions'
 
 // returns a cart dropdown component which renders all current cart items and a checkout page button
 const CartDropdown = ({ cartItems, history, dispatch }) => (
-    <div className='cart-dropdown'>
-        <div className='cart-items'>
+    <CartDropdownContainer>
+        <CartItemsContainer>
             {cartItems.length ? (
                 cartItems.map(item => (
                     <CartItem key={item.id} item={item} />
                 ))
             ) : (
-                <span className='empty-message'>Your cart is empty</span>
+                <EmptyMessageContainer>Your cart is empty</EmptyMessageContainer>
             )}
-        </div>
-        <CustomButton onClick={() => {
+        </CartItemsContainer>
+        <CheckoutButtonWrapper onClick={() => {
             history.push('/checkout');
             dispatch(toggleCartHidden());
         }}>
             GO TO CHECKOUT
-        </CustomButton>
-    </div>
+        </CheckoutButtonWrapper>
+    </CartDropdownContainer>
 );
 
 

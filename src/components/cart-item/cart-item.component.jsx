@@ -1,19 +1,19 @@
 // import react library
 import React from 'react';
 
-// import styles
-import './cart-item.styles.scss';
+// import styled containers
+import { CartItemContainer, ItemImageContainer, ItemDetailsContainer, ItemDetailValueContainer } from './cart-item.styles';
 
 
 // returns a cart item component which displays shop item summary and quantity
 const CartItem = ({ item: { imageUrl, price, name, quantity } }) => (
-    <div className='cart-item'>
-        <img src={imageUrl} alt='item' />
-        <div className='item-details'>
-            <span className='name'>{name}</span>
-            <span className='price'>{quantity} x ${price}</span>
-        </div>
-    </div>
+    <CartItemContainer>
+        <ItemImageContainer src={imageUrl} alt='item' />
+        <ItemDetailsContainer>
+            <ItemDetailValueContainer>{name}</ItemDetailValueContainer>
+            <ItemDetailValueContainer>{quantity} x ${price}</ItemDetailValueContainer>
+        </ItemDetailsContainer>
+    </CartItemContainer>
 );
 
 export default CartItem;
