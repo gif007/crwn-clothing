@@ -1,8 +1,15 @@
 // import react library
 import React from 'react';
 
-// import styles
-import './checkout.styles.scss';
+// import styled containers
+import {
+    CheckoutPageContainer,
+    CheckoutHeaderContainer,
+    HeaderBlockContainer,
+    CartTotalContainer,
+    TestWarning,
+    StripeCheckoutButtonWrapper
+} from './checkout.styles';
 
 // import connect HoC from redux
 import { connect } from 'react-redux';
@@ -24,40 +31,43 @@ import StripeCheckoutButton from '../../components/stripe-button/stripe-button.c
 
 // return a checkout page which presents current items in cart array, overall total and the stripe checkout button
 const CheckoutPage = ({ cartItems, cartTotal }) => (
-    <div className='checkout-page'>
-        <div className='checkout-header'>
-            <div className='header-block'>
+    <CheckoutPageContainer>
+        <CheckoutHeaderContainer>
+            <HeaderBlockContainer>
                 <span>product</span>
-            </div>
-            <div className='header-block'>
+            </HeaderBlockContainer>
+            <HeaderBlockContainer>
                 <span>description</span>
-            </div>
-            <div className='header-block'>
+            </HeaderBlockContainer>
+            <HeaderBlockContainer>
                 <span>quantity</span>
-            </div>
-            <div className='header-block'>
+            </HeaderBlockContainer>
+            <HeaderBlockContainer>
                 <span>price</span>
-            </div>
-            <div className='header-block'>
+            </HeaderBlockContainer>
+            <HeaderBlockContainer>
                 <span>remove</span>
-            </div>
-        </div>
+            </HeaderBlockContainer>
+        </CheckoutHeaderContainer>
         {
             cartItems.map(cartItem => (
                 <CheckoutItem key={cartItem.id} cartItem={cartItem} />
  
         ))}
 
-        <div className='total'>
+        <CartTotalContainer>
             <span>TOTAL: ${cartTotal}</span>
-        </div>
-        <div className='test-warning'>
+        </CartTotalContainer>
+        <TestWarning>
             *Test Card*
             <br />
             4242 4242 4242 4242 cvv123 exp01/22
-        </div>
-        <StripeCheckoutButton price={cartTotal} />
-    </div>
+        </TestWarning>
+        <StripeCheckoutButtonWrapper>
+            <StripeCheckoutButton price={cartTotal} />
+        </StripeCheckoutButtonWrapper>
+        
+    </CheckoutPageContainer>
 );
 
 

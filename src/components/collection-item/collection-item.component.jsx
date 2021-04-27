@@ -22,7 +22,7 @@ import { addItem } from '../../redux/cart/cart.actions';
 const CollectionItem = ({ item, addItem }) => {
     const {name, price, imageUrl} = item;
     return (
-    <CollectionItemContainer>
+    <CollectionItemContainer className='collection-item'>
         <CollectionItemImageContainer
             style={{
                 backgroundImage: `url(${imageUrl})`
