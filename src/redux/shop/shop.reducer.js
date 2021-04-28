@@ -1,16 +1,21 @@
-// get mock up data
-import SHOP_DATA from './shop.data.js';
+// import action types
+import ShopActionsTypes from './shop.types'
 
 
 // initiate state to contain collections of shop items
 const INITIAL_STATE = {
-    collections: SHOP_DATA
+    collections: null
 };
 
 
-// export a function which always returns the unmodified shop items
+// updates shop reducer to hold data from firestore
 const shopReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case ShopActionsTypes.UPDATE_COLLECTIONS:
+            return {
+                ...state,
+                collections: action.payload
+            };
         default:
             return state;
     }

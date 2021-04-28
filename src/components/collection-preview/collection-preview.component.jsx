@@ -1,6 +1,8 @@
 // import react library
 import React from 'react';
 
+import { withRouter} from 'react-router-dom';
+
 // import styled containers
 import { CollectionPreviewContainer, CollectionPreviewTitle, CollectionPreviewPreview } from './collection-preview.styles';
 
@@ -9,9 +11,13 @@ import CollectionItem from '../collection-item/collection-item.component';
 
 
 // returns a collection preview component which displays a collection item for the first 4 items in collection
-const CollectionPreview = ({ title, items }) => (
+const CollectionPreview = ({ title, items, history, match, routeName }) => (
     <CollectionPreviewContainer>
-        <CollectionPreviewTitle>{title.toUpperCase()}</CollectionPreviewTitle>
+        <CollectionPreviewTitle
+            onClick={() => history.push(`${match.path}/${routeName}`)}
+        >
+            {title.toUpperCase()}
+        </CollectionPreviewTitle>
         <CollectionPreviewPreview>
             {
                 items
@@ -24,4 +30,4 @@ const CollectionPreview = ({ title, items }) => (
     </CollectionPreviewContainer>
 )
 
-export default CollectionPreview;
+export default withRouter(CollectionPreview);

@@ -1,23 +1,35 @@
 import React from 'react';
+
 // import react routing components
 import { Switch, Route, Redirect } from 'react-router-dom';
+
 // import page components
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import CheckoutPage from './pages/checkout/checkout.component';
+
 // import app header component
 import Header from './components/header/header.component';
+
 // import firebase utilities
-import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import {
+  auth,
+  createUserProfileDocument
+} from './firebase/firebase.utils';
+
 // import connect HoC from redux
 import { connect } from 'react-redux';
+
 // import redux dispatch action to set current user
 import { setCurrentUser } from './redux/user/user.actions';
+
 // import main app styles
 import './App.css';
+
 // import redux selectors
 import { selectCurrentUser } from './redux/user/user.selectors';
+
 // import reselect wrapper
 import { createStructuredSelector } from 'reselect';
 
@@ -30,7 +42,7 @@ class App extends React.Component {
     const {setCurrentUser} = this.props; // get dispatch action from redux
     // set up listener for firebase auth system
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      if (userAuth) {
+      if (userAuth) { // if user is signing in
         const userRef = await createUserProfileDocument(userAuth); // create profile if needed
 
         userRef.onSnapshot(snapShot => {
@@ -47,7 +59,7 @@ class App extends React.Component {
   }
 
   componentWillUnmount() {
-    // unsubscibe from firebase auth listener on component destruction
+    // unsubscribe from firebase auth listener on component destruction
     this.unsubscribeFromAuth();
   }
 
@@ -72,6 +84,7 @@ class App extends React.Component {
   }
 }
 
+// pass currentUser from state into app component
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser
 });

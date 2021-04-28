@@ -19,7 +19,7 @@ const SHOP_DATA = {
       },
       {
         id: 3,
-        name: 'Brown Cowboy',
+        name: 'Brown Cowboy Hat',
         imageUrl: 'https://i.ibb.co/QdJwgmp/brown-cowboy.png',
         price: 35
       },
