@@ -10,8 +10,10 @@ import rootReducer from './root-reducer';
 // import the persistStore method of redux
 import { persistStore } from 'redux-persist';
 
+import thunk from 'redux-thunk';
+
 // initiate middlewares array
-const middlewares = [];
+const middlewares = [thunk];
 
 
 // add middlewares only in development environment
