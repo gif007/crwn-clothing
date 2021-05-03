@@ -7,12 +7,12 @@ import FormInput from '../form-input/form-input.component';
 // import custom button component
 import CustomButton from '../custom-button/custom-button.component';
 
-// import firebase auth api and createUserProfileDocument function to manage user profiles in firestore
-import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
-
 // import styled containers
 import { SignUpContainer, TitleContainer } from './sign-up.styles';
 
+import { connect } from 'react-redux';
+
+import { signUpStart } from '../../redux/user/user.actions';
 
 // returns a sign up component
 class SignUp extends React.Component {
@@ -30,30 +30,17 @@ class SignUp extends React.Component {
     }
 
     // submits form values to firestore
-    handleSubmit = async (event) => {
+    handleSubmit = (event) => {
         event.preventDefault();
         const { displayName, email, confirmPassword, password } = this.state;
+        const { signUpStart } = this.props;
 
-        // check for password mismatch
-        if (password!== confirmPassword) {
+        if (password !== confirmPassword) {
             alert('Passwords do not match');
             return;
         }
 
-        // attempt to create a firestore document representing user 
-        try {
-            const { user } = await auth.createUserWithEmailAndPassword(email, password);
-            await createUserProfileDocument(user, {displayName});
-            // wipe form on successful profile creation
-            this.setState({
-                displayName: '',
-                email: '',
-                password: '',
-                confirmPassword: ''
-            })
-        } catch(error) {
-            console.log(error);
-        }
+        signUpStart({ displayName, email, password });
     }
 
     // update state to hold current form input values
@@ -111,4 +98,8 @@ class SignUp extends React.Component {
     }
 }
 
-export default SignUp;
+const mapDispatchToProps = dispatch => ({
+    signUpStart: (userDetails) => dispatch(signUpStart(userDetails))
+});
+
+export default connect(null, mapDispatchToProps)(SignUp);

@@ -1,5 +1,5 @@
 // import types of actions
-import { CartActionTypes } from './cart.types';
+import CartActionTypes from './cart.types';
 
 // export a function which dispatches action to change currentUser in store
 export const toggleCartHidden = () => ({
@@ -22,4 +22,8 @@ export const clearItemFromCart = item => ({
 export const removeItem = item => ({
     type: CartActionTypes.REMOVE_ITEM,
     payload: item
+});
+
+export const clearCart = () => ({
+    type: CartActionTypes.CLEAR_CART
 });

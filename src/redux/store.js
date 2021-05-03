@@ -10,10 +10,17 @@ import rootReducer from './root-reducer';
 // import the persistStore method of redux
 import { persistStore } from 'redux-persist';
 
-import thunk from 'redux-thunk';
+// import saga middleware from redux
+import createSagaMiddleware from 'redux-saga';
+
+import rootSaga from './root-saga';
+
+
+// instantiate saga middleware without options
+const sagaMiddleware = createSagaMiddleware();
 
 // initiate middlewares array
-const middlewares = [thunk];
+const middlewares = [sagaMiddleware];
 
 
 // add middlewares only in development environment
@@ -23,6 +30,9 @@ if (process.env.NODE_ENV === 'development') {
 
 // create store with rootReducer and middlewares
 export const store = createStore(rootReducer, applyMiddleware(...middlewares));
+
+// populate saga middleware with individual sagas
+sagaMiddleware.run(rootSaga);
 
 // create persisted version of store
 export const persistor = persistStore(store);

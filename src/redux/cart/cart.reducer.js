@@ -1,5 +1,5 @@
 // import all actions types
-import { CartActionTypes } from './cart.types';
+import CartActionTypes from './cart.types';
 // import helper functions from utilities
 import { addItemToCart, removeItemFromCart } from './cart.utils';
 
@@ -35,6 +35,11 @@ const cartReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 cartItems: removeItemFromCart(state.cartItems, action.payload)
+            };
+        case CartActionTypes.CLEAR_CART:
+            return {
+                ...state,
+                cartItems: []
             };
         default :
             return state; // return current state

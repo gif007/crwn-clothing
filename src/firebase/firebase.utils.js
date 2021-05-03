@@ -89,16 +89,27 @@ export const convertCollectionsSnapshotToMap = collections => {
     }, {})
 };
 
+export const getCurrentUser = () => {
+    return new Promise((resolve, reject) => {
+        const unsubscribe = auth.onAuthStateChanged(userAuth => {
+            unsubscribe();
+            resolve(userAuth);
+        }, reject)
+    });
+}
+
 firebase.initializeApp(config); // initialize app with firebase configuration settings
 
 export const auth = firebase.auth(); // export OAuth API
 export const firestore = firebase.firestore(); // export firestore API
 
 // create a Good signin provider
-const provider = new firebase.auth.GoogleAuthProvider();
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+
 // select prompt parameter on provider
-provider.setCustomParameters({ prompt: 'select_account' });
+googleProvider.setCustomParameters({ prompt: 'select_account' });
+
 // export function which triggers Google signin popup
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
 export default firebase;

@@ -12,17 +12,8 @@ import CheckoutPage from './pages/checkout/checkout.component';
 // import app header component
 import Header from './components/header/header.component';
 
-// import firebase utilities
-import {
-  auth,
-  createUserProfileDocument
-} from './firebase/firebase.utils';
-
 // import connect HoC from redux
 import { connect } from 'react-redux';
-
-// import redux dispatch action to set current user
-import { setCurrentUser } from './redux/user/user.actions';
 
 // import main app styles
 import './App.css';
@@ -33,35 +24,22 @@ import { selectCurrentUser } from './redux/user/user.selectors';
 // import reselect wrapper
 import { createStructuredSelector } from 'reselect';
 
+import { checkUserSession } from './redux/user/user.actions';
+
 
 class App extends React.Component {
 
   unsubscribeFromAuth = null; // instantiate unsubscribe attribute for firebase auth
 
   componentDidMount() {
-    const {setCurrentUser} = this.props; // get dispatch action from redux
-    // set up listener for firebase auth system
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      if (userAuth) { // if user is signing in
-        const userRef = await createUserProfileDocument(userAuth); // create profile if needed
-
-        userRef.onSnapshot(snapShot => {
-          // set currentUser in redux store with user data from firebase
-          setCurrentUser({
-            id: snapShot.id,
-            ...snapShot.data()
-          });
-        });
-      } else { // if no user is authenticated userAuth will return null
-        setCurrentUser(userAuth);
-      }
-    });
+    const { checkUserSession } = this.props;
+    checkUserSession();
   }
 
-  componentWillUnmount() {
-    // unsubscribe from firebase auth listener on component destruction
-    this.unsubscribeFromAuth();
-  }
+  // componentWillUnmount() {
+  //   // unsubscribe from firebase auth listener on component destruction
+  //   this.unsubscribeFromAuth();
+  // }
 
   render() {
     // renders a header component and appropriate page based on URI
@@ -89,10 +67,9 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser
 });
 
-// provides dispatching capabilities to App component
-// in order to set the currentUser attribute on the user store
 const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
-});
+  checkUserSession: () => dispatch(checkUserSession())
+})
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
