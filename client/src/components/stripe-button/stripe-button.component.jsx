@@ -4,6 +4,8 @@ import React from 'react';
 // import stripecheckout component of react stripe checkout library
 import StripeCheckout from 'react-stripe-checkout';
 
+import axios from 'axios';
+
 
 // returns a checkout popup with cart total
 const StripeCheckoutButton = ({ price }) => {
@@ -14,8 +16,19 @@ const StripeCheckoutButton = ({ price }) => {
 
     // callback function on successful payment
     const onToken = token => {
-        console.log(token);
-        alert('Success');
+        axios({
+            url: 'payment',
+            method: 'post',
+            data: {
+                amount: priceForStripe,
+                token
+            }
+        }).then(response => {
+            alert('Payment successful')
+        }).catch(error => {
+            console.log('Payment error: ', error);
+            alert('There was an issue with your payment. Please use the test credit card.');
+        })
     };
 
     // returns a button which launches stripe checkout popup
