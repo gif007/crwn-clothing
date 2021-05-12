@@ -15,8 +15,7 @@ import Header from './components/header/header.component';
 // import connect HoC from redux
 import { connect } from 'react-redux';
 
-// import main app styles
-import './App.css';
+import { GlobalStyle } from './global.styles';
 
 // import redux selectors
 import { selectCurrentUser } from './redux/user/user.selectors';
@@ -36,6 +35,7 @@ const App = ({ checkUserSession, currentUser }) => {
   // renders a header component and appropriate page based on URI
   return (
     <div>
+    <GlobalStyle />
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />

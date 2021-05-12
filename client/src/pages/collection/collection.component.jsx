@@ -20,7 +20,7 @@ const CollectionPage = ({ collection }) => {
     const { title, items } = collection;
     return (
     <CollectionPageContainer>
-        <TitleContainer>{ title }</TitleContainer>
+        <TitleContainer>{ title.toUpperCase() }</TitleContainer>
         <ItemsContainer>
             {
                 items.map(item => (

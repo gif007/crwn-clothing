@@ -9,15 +9,15 @@ const MainColor = css`
     black
 `;
 
+export const FormInputGroup = styled.div`
+    position: relative;
+    margin: 45px 0;
+`;
+
 const ShrinkLabel = css`
     top: -14px;
     font-size: 12px;
     color: ${MainColor};
-`;
-
-export const FormInputGroup = styled.div`
-    position: relative;
-    margin: 45px 0;
 `;
 
 const getShrink = props => {

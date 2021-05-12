@@ -59,6 +59,10 @@ export const MenuItemContainer = styled.div`
     }
 
     ${getSize}
+
+    @media screen and (max-width: 800px) {
+        height: 200px;
+    }
 `;
 
 export const MenuItemTitle = styled.h1`
